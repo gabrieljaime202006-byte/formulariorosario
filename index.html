@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario Interactivo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #333;
+      text-align: center;
+    }
+
+    img {
+      margin: 20px 0;
+      border-radius: 8px;
+      max-width: 90%;
+      height: auto;
+    }
+
+    .form-container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2563eb;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <h2>Formulario de Contacto</h2>
+  <img src="https://i.imgur.com/p3BWsge.jpg" alt="Imagen de formulario">
+  <div class="form-container">
+    <form id="contactForm">
+      <label for="name">Nombre</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="gender">Sexo</label>
+      <select id="gender" name="gender" required>
+        <option value="">Selecciona una opción</option>
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+        <option value="otro">Otro</option>
+        <option value="prefiero-no-decirlo">Prefiero no decirlo</option>
+      </select>
+
+      <label for="age">Edad</label>
+      <input type="number" id="age" name="age" min="0" required />
+
+      <button type="submit">Enviar</button>
+    </form>
+    <div class="footer">&copy; 2025 @frostNicko</div>
+  </div>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const form = new FormData();
+      form.append("name", document.getElementById("name").value);
+      form.append("email", document.getElementById("email").value);
+      form.append("gender", document.getElementById("gender").value);
+      form.append("age", document.getElementById("age").value);
+
+      fetch("https://script.google.com/macros/s/AKfycbw_o0DYLNWTZLdAfUBOPQdNFXcheHY3M0dljqZ7p2MrSNfm1YGGHEak751saJVwJ80ccg/exec", {
+        method: "POST",
+        body: form
+      })
+      .then(response => alert("Datos enviados correctamente"))
+      .catch(error => alert("Error al enviar datos"));
+    });
+  </script>
+</body>
+</html>
